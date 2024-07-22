@@ -4,8 +4,9 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "ritwickdey.LiveServer",
-    "stylelint.vscode-stylelint"
+    "stylelint.vscode-stylelint",
     // Additional Extensions Here
+    "ms-azuretools.vscode-docker"
   ],
   "onCreateCommand": "echo PS1='\"$ \"' >> ~/.bashrc", //Set Terminal Prompt to $
   "postAttachCommand": "git pull --all"  
