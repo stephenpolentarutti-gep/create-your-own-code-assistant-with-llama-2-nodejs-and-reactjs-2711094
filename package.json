@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "nest-commander": "^3.14.0"
+    "@prisma/client": "^5.17.0",
+    "nest-commander": "^3.14.0",
+    "prisma": "^5.17.0"
   }
 }
