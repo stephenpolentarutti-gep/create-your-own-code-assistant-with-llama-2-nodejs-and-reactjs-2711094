@@ -1,12 +1,12 @@
-import { cosmiconfigSync } from "cosmiconfig";
+import { cosmiconfigSync } from 'cosmiconfig';
 
-export default (options: Record<string, any>) {
+export default (options: Record<string, any>) => {
   const explorer = cosmiconfigSync('kuzco');
   const searchPaths = options?.searchPaths || [process.cwd()];
 
   try {
     const result = explorer.search();
-    if(result) {
+    if (result) {
       return result.config;
     } else {
       return {
@@ -15,17 +15,19 @@ export default (options: Record<string, any>) {
         requestOptions: {
           useMMap: true,
           numThread: 6,
-          numGpu: 1
+          numGpu: 1,
         },
         database: {
           tableName: 'documents',
-          columnName: 'match_documents'
+          columnName: 'match_documents',
         },
         extensions: ['.ts', '.js', '.json'],
         chatTemperature: 0.5,
         chatTopP: 1,
-        chatTopK: 30
-      }
+        chatTopK: 30,
+      };
     }
+  } catch (e) {
+    console.error(e);
   }
-}
+};
