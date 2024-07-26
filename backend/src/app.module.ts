@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DataProcessingService } from './data-processing/data-processing.service';
 import { DatabaseService } from './database/database.service';
 import { CliModule } from './cli/cli.module';
+import { RagModule } from './rag/rag.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { CliModule } from './cli/cli.module';
       // @ts-expect-error Nest will solve for us
       load: [CustomConfigService]
     }),
-    CliModule
+    CliModule,
+    RagModule
   ],
   controllers: [AppController],
   providers: [AppService, CodellmService, OllamaService, DataProcessingService, DatabaseService],
