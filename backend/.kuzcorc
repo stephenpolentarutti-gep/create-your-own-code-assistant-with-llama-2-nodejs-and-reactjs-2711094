@@ -1,0 +1,22 @@
+{
+  "baseUrl": "http://localhost:11434",
+  "model": "llama2",
+  "requestOptions": {
+    "useMMap": true,
+    "numThread": 6,
+    "numGPU": 1
+  },
+  "database": {
+    "tableName": "documents",
+    "columnName": "match_documents"
+  },
+  "loaders": [
+    ".ts",
+    ".js",
+    ".json"
+  ],
+  "exclude": [
+    "dist",
+    ".*node_modules.*"
+  ]
+}

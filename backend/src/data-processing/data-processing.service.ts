@@ -1,15 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { DirectoryLoader, UnknownHandling } from 'langchain/document_loaders/fs/directory';
+import {
+  DirectoryLoader,
+  UnknownHandling,
+} from 'langchain/document_loaders/fs/directory';
 import { TextLoader } from 'langchain/document_loaders/fs/text';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
-
+import { DatabaseService } from 'src/database/database.service';
 
 @Injectable()
 export class DataProcessingService {
   constructor(
     private configService: ConfigService,
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
   ) {}
 
   async extractAndStoreData(directory: string): Promise<void> {
@@ -33,20 +36,17 @@ export class DataProcessingService {
       textLoaders,
       true,
       UnknownHandling.Ignore,
-      exclude_globs
+      exclude_globs,
     );
     const documents = await loader.load();
     return documents;
   }
 
   async extract(documents) {
-    const splitter = RecursiveCharacterTextSplitter.fromLanguage(
-      'js',
-      {
-        chunkSize: 2000,
-        chunkOverlap: 200,
-      }
-    );
+    const splitter = RecursiveCharacterTextSplitter.fromLanguage('js', {
+      chunkSize: 2000,
+      chunkOverlap: 200,
+    });
     const texts = await splitter.splitDocuments(documents);
 
     return texts;
