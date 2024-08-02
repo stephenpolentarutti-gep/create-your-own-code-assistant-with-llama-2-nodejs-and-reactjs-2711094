@@ -1,12 +1,15 @@
-import { commands, ExtensionContext } from "vscode";
-import { HelloWorldPanel } from "./panels/HelloWorldPanel";
+import { commands, ExtensionContext, chat } from "vscode";
+import { KuzcoPanel } from "./panels/KuzcoPanel";
+import { KuzcoChat } from './chat/KuzcoChat";
 
 export function activate(context: ExtensionContext) {
   // Create the show hello world command
-  const showHelloWorldCommand = commands.registerCommand("hello-world.showHelloWorld", () => {
-    HelloWorldPanel.render(context.extensionUri);
+  const showChatCommand = commands.registerCommand("kuzco.showChat", () => {
+    KuzcoPanel.render(context.extensionUri);
   });
 
+  const kuzcoChatParticipant = chat.createChatParticipant('kuzco.chat', KuzcoChat.initialize);
+
   // Add command to the extension context
-  context.subscriptions.push(showHelloWorldCommand);
+  context.subscriptions.push(kuzcoChatParticipant, showChatCommand);
 }
