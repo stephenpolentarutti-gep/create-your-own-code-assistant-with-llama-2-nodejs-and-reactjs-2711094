@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Disposable, ChatRequest, ChatContext, ChatResponseStream, ChatResult, CancellationToken } from "vscode";
 
 export const KuzcoChat = {

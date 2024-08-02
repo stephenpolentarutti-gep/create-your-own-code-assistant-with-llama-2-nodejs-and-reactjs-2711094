@@ -1,6 +1,7 @@
+// @ts-ignore
 import { commands, ExtensionContext, chat } from "vscode";
 import { KuzcoPanel } from "./panels/KuzcoPanel";
-import { KuzcoChat } from './chat/KuzcoChat";
+import { KuzcoChat } from "./panels/KuzcoChat";
 
 export function activate(context: ExtensionContext) {
   // Create the show hello world command
