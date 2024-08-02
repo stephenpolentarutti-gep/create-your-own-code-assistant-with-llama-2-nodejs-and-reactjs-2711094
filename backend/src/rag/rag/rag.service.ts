@@ -42,11 +42,11 @@ export class RagService {
     this.answerGrader = new AnswerGrader(this.ollamaService.chat);
   }
 
-  async run(question: string) {
+  async run(question: string): Promise<string> {
     const app = this.graph.compile({
       checkpointer: MemorySaver,
     });
-    app.invoke(question);
+    return app.invoke(question);
   }
 
   async setupGraph(_graphState: typeof graphState) {
