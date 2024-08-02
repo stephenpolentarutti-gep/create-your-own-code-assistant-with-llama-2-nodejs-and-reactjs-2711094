@@ -16,6 +16,6 @@ export const KuzcoChat = {
         return { metadata: { command: 'ingest'}};
     },
     async ingestCall(prompt: string) {
-        return prompt
+        return prompt;
     }
 }
