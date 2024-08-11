@@ -5,17 +5,17 @@ import { OllamaEmbeddings, ChatOllama } from '@langchain/ollama';
 
 @Injectable()
 export class OllamaService {
-   embedings: OllamaEmbeddings;
-   chat: ChatOllama;
+  embedings: OllamaEmbeddings;
+  chat: ChatOllama;
 
-   constructor(private configService: ConfigService) {
-      this.embedings = new OllamaEmbeddings({
+  constructor(private configService: ConfigService) {
+    this.embedings = new OllamaEmbeddings({
       model: this.configService.get<string>('model'), //'llama2', // default value
       baseUrl: this.configService.get<string>('url'), //'http://localhost:11434', // default value
       requestOptions:
         this.configService.get<Record<string, string>>('requestOptions'),
     });
-      this.chat = new ChatOllama({
+    this.chat = new ChatOllama({
       model: this.configService.get<string>('model'), //'llama2', // default value
       baseUrl: this.configService.get<string>('url'), //'http://localhost:11434', // default value
       format: this.configService.get<string>('format'), //'json', // default value

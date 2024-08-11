@@ -1,10 +1,10 @@
-version: '3.8'
+version: "3.8"
 
 services:
   server:
     env_file:
       - .env
-    build: 
+    build:
       context: ./
       dockerfile: .dockerfiles/backend.dockerfile
     ports:
@@ -14,7 +14,7 @@ services:
     environment:
       OLLAMA_URL: "${OLLAMA_URL}"
       DB_URL: "${DB_URL}"
-    network:
+    networks:
       - ollama-docker
   ollama:
     image: ollama/ollama:latest
@@ -48,10 +48,10 @@ services:
     networks:
       - ollama-docker
 
-  networks:
-    ollama-docker:
-      external: false
-  volumes:
-    backend:
-    ollama/ollama:
-    db:
+networks:
+  ollama-docker:
+    external: false
+volumes:
+  backend:
+  ollama:
+  db:
