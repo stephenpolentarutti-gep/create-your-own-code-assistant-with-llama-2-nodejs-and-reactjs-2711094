@@ -7,12 +7,13 @@ export interface ChatMessageProps {
 }
 
 const ChatMessage: React.FC<ChatMessageProps> = ({ user, text, isSentByMe }) => {
-  const align = isSentByMe ? 'flex-end' : 'flex-start';
+  const alignSelf = isSentByMe ? 'end' : 'start';
+  const background = isSentByMe ? 'light-3' : 'light-1';
   return (
-    <Box direction="row" align={align} gap="small">
-      {isSentByMe && <Avatar size="small" src="https://placeimg.com/32/32/people" />}
+    <Box direction="row" alignSelf={alignSelf} gap="small" background={background} pad="small" round="small">
+      {!isSentByMe && <Avatar size="small" src="https://placeimg.com/32/32/people" />}
       <Box>
-        <Text>{user}:</Text>
+        <Text weight="bold">{user}:</Text>
         <Text>{text}</Text>
       </Box>
     </Box>
