@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as hub from 'langchain/hub';
 import { StringOutputParser } from '@langchain/core/output_parsers';
 import { END, MemorySaver, START, StateGraph } from '@langchain/langgraph';
+import { OllamaService } from 'src/ollama/ollama.service';
 
 interface RAGState {
   question: string;
