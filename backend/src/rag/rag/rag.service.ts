@@ -38,7 +38,9 @@ export class RagService {
   async setupGraph(_graphState: typeof graphState) {
     this.graph = new StateGraph({
       channels: _graphState,
-    });
+    })
+      .addNode('retrieve', this.retrieve)
+      .addNode('generate', this.generate);
     // nodes
   }
   async retrieve(state: RAGState) {
