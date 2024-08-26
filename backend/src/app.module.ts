@@ -9,6 +9,7 @@ import { DataProcessingService } from './data-processing/data-processing.service
 import { DatabaseService } from './database/database.service';
 import { CliModule } from './cli/cli.module';
 import { RagModule } from './rag/rag.module';
+import { CodellmModule } from './codellm/codellm.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { RagModule } from './rag/rag.module';
       load: [CustomConfigService]
     }),
     CliModule,
-    RagModule
+    RagModule,
+    CodellmModule
   ],
   controllers: [AppController],
   providers: [AppService, CodellmService, OllamaService, DataProcessingService, DatabaseService],

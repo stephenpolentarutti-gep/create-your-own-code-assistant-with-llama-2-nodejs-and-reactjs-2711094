@@ -19,4 +19,8 @@ export class AppController {
   chat(prompt: string) {
     return this.appService.chat(prompt);
   }
+  @Post('rename')
+  rename(oldName: string, newName: string) {
+    return this.appService.rename(oldName, newName);
+  }
 }
