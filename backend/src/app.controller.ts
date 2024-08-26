@@ -23,4 +23,9 @@ export class AppController {
   rename(oldName: string, newName: string) {
     return this.appService.rename(oldName, newName);
   }
+
+  @Post('completion')
+  completion(context: string) {
+    return this.appService.completion(context);
+  }
 }
