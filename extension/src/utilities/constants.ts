@@ -4,6 +4,8 @@
 export const API_URLS = {
   CHAT: "http://localhost:3000/chat",
   INGEST: "http://localhost:3000/ingest",
+  RENAME: "http://localhost:3000/rename",
+  COMPLETION: "http://localhost:3000/completion",
 };
 
 // Headers
