@@ -35,8 +35,7 @@ export class DataProcessingService {
       REPO_PATH,
       textLoaders,
       true,
-      UnknownHandling.Ignore,
-      exclude_globs,
+      UnknownHandling.Ignore
     );
     const documents = await loader.load();
     return documents;

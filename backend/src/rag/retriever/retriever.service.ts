@@ -11,7 +11,7 @@ export class RetrieverService {
   retriever: BaseRetrieverInterface<Record<string, any>>;
   toolExecutor: any;
   constructor(private databaseService: DatabaseService) {
-    this.retriever = this.databaseService.getVectorStore().asRetriever();
+    this.retriever = this.databaseService.getVectorStore();
 
     const tool = createRetrieverTool(this.retriever, {
       name: 'retrieve_code_files',

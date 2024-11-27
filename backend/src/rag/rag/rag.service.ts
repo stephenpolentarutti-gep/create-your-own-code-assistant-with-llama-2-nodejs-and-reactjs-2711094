@@ -7,7 +7,7 @@ import type { Document } from '@langchain/core/documents';
 import { RetrieverService } from '../retriever/retriever.service';
 import { Utils } from '../utils/utils';
 import { RetrievalGrader } from '../retrieval-grader/retrieval-grader';
-import { AnswerRewriter } from '../answer-re-writer/answer-re-writer';
+import { AnswerReWriter } from '../answer-re-writer/answer-re-writer';
 import { QuestionRouter } from '../question-router/question-router';
 import { AnswerGrader } from '../answer-grader/answer-grader';
 
@@ -36,7 +36,7 @@ export class RagService {
         .pipe(new StringOutputParser());
     });
 
-    this.answerRewriter = new AnswerRewriter(this.ollamaService.chat);
+    this.answerRewriter = new AnswerReWriter(this.ollamaService.chat);
     this.retrievalGrader = new RetrievalGrader(this.ollamaService.chat);
     this.questionRouter = new QuestionRouter(this.ollamaService.chat);
     this.answerGrader = new AnswerGrader(this.ollamaService.chat);
@@ -49,7 +49,7 @@ export class RagService {
     return app.invoke(question);
   }
 
-  async setupGraph(_graphState: typeof graphState) {
+  async setupGraph(_graphState: any) {
     this.graph = new StateGraph({
       channels: _graphState,
     })
@@ -111,7 +111,7 @@ export class RagService {
   // Re-write question
   async transformQuery(state: RAGState) {
     console.log('---TRANSFORM QUERY---');
-    const betterQuestion = await this.answerReWriter.run({
+    const betterQuestion = await this.answerRewriter.run({
       question: state.question,
     });
     return { question: betterQuestion };

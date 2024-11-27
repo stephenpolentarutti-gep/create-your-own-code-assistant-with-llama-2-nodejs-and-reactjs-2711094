@@ -21,7 +21,7 @@ export class AppService {
     return { message: 'Ingested data' };
   }
   async chat(prompt): Promise<string> {
-    await this.ragService.run(prompt);
+    return await this.ragService.run(prompt);
   }
   async rename(oldName: string, newName: string): Promise<string> {
     return await this.refactorService.renameVariable(oldName, newName);

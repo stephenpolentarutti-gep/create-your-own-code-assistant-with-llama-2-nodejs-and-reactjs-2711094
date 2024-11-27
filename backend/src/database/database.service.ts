@@ -8,17 +8,21 @@ import { Prisma, PrismaClient } from '@prisma/client';
 export class DatabaseService {
   private vectorStore;
   private readonly prisma = new PrismaClient();
-  constructor(private configService: ConfigService, private ollamaService: OllamaService) {}
+  constructor(
+    private configService: ConfigService,
+    private ollamaService: OllamaService,
+  ) {}
 
   getVectorStore() {
-    this.vectorStore;
+    return this.vectorStore;
   }
-  async GenerateEmbeddings(texts): Promise<void> {
-    this.vectorStore = await PrismaVectorStore.fromDocuments(texts,
+  async GenerateEmbeddings(texts): Promise<any> {
+    return await PrismaVectorStore.fromDocuments(
+      texts,
       this.ollamaService.getEmbeddings(),
       {
         db: this.prisma,
-        prisma: Prisma,
+        prisma: PrismaClient,
         tableName: this.configService.get<string>('database.tableName', 'documents'),
         vectorColumnName: this.configService.get<string>('databse.columnName', 'match_documents'),
         columns: {
